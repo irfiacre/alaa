@@ -26,11 +26,11 @@ const AttachButton = ({
       />
       <label
         htmlFor="file-upload"
-        className="flex items-center justify-center p-4 rounded-2xl bg-white/40 backdrop-blur-sm border border-white/30 cursor-pointer hover:bg-white/50 transition-colors"
+        className="flex items-center justify-center px-4 py-2 rounded-2xl border border-black/10 cursor-pointer hover:bg-white/50 transition-colors"
       >
         <Icon icon="tdesign:attach" />
-        <span className="text-gray-700 font-medium">
-          {fileName || "Upload a document"}
+        <span className="font-medium">
+          {fileName || "Attach"}
         </span>
       </label>
       {fileName && (

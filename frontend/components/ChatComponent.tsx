@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { Icon } from "@iconify/react";
 import AttachButton from "./buttons/AttachButton";
+import SelectModeButton from "./buttons/SelectModeButton";
 
 const ChatComponent = ({
   handleSend,
@@ -34,9 +35,9 @@ const ChatComponent = ({
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ delay: 0.5 }}
-        // className="bg-white
+        className="bg-white/80 p-4 rounded-3xl"
       >
-        <div className="mb-4">
+        <div>
           <textarea
             value={message}
             onChange={(e) => {
@@ -51,44 +52,35 @@ const ChatComponent = ({
               textarea.style.height = `${textarea.scrollHeight}px`;
             }}
             onKeyPress={handleKeyPress}
-            placeholder="Type your message here..."
+            placeholder="Describe what you case..."
             style={{ minHeight: "48px", maxHeight: "300px", overflowY: "auto" }}
-            className="w-full h-auto p-4 rounded-2xl bg-white backdrop-blur-sm border border-white/30 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 text-gray-800 placeholder-gray-500 resize-none font-sans"
+            className="w-full h-auto p-4 rounded-2xl bg-inherit outline-none placeholder-gray-500 resize-none font-sans"
             rows={1}
           />
         </div>
-
-        <AttachButton
-          fileName={fileName}
-          handleFileChange={handleFileChange}
-          setFile={setFile}
-          setFileName={setFileName}
-        />
-        
-        <motion.button
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={handleSendMessage}
-          disabled={!message.trim() && !file}
-          className="w-full py-4 px-6 rounded-2xl bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold text-lg shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
-        >
-          <span>Send</span>
-          <svg
-            className="w-5 h-5 ml-2"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M13 7l5 5m0 0l-5 5m5-5H6"
+        <div className="flex flex-row items-center justify-between">
+          <div className="flex flex-row items-center justify-center gap-5">
+            <SelectModeButton />
+            <AttachButton
+              fileName={fileName}
+              handleFileChange={handleFileChange}
+              setFile={setFile}
+              setFileName={setFileName}
             />
-          </svg>
-        </motion.button>
+          </div>
+          <div>
+            <motion.button
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={handleSendMessage}
+              disabled={!message.trim() && !file}
+              className="w-full p-2 rounded-full bg-black/10 cursor-pointer"
+            >
+              <Icon icon="lucide:arrow-up" fontSize={20} className="text-black/40" />
+            </motion.button>
+          </div>
+        </div>
       </motion.div>
-      s
     </div>
   );
 };
